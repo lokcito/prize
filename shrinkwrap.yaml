@@ -7,8 +7,6 @@ dependencies:
   http-errors: 1.6.3
   morgan: 1.9.1
   mysql2: 1.7.0
-  nodemailer: 5.1.1
-  paypal-rest-sdk: 1.8.1
   sequelize: 4.44.4
   sequelize-cli: 5.5.1
 packages:
@@ -102,10 +100,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-iCuPHDFgrHX7H2vEI/5xpz07zSHB00TpugqhmYtVmMO6518mCuRMoOYFldEBl0g187ufozdaHgWKcYFb61qGiA==
-  /buffer-crc32/0.2.13:
-    dev: false
-    resolution:
-      integrity: sha1-DTM+PwDqxQqhRUq9MO+MKl2ackI=
   /bytes/3.0.0:
     dev: false
     engines:
@@ -726,12 +720,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-CXdUiJembsNjuToQvxayPZF9Vqht7hewsvy2sOWafLvi2awflj9mOC6bHIg50orX8IJvWKY9wYQ/zB2kogPslQ==
-  /nodemailer/5.1.1:
-    dev: false
-    engines:
-      node: '>=6.0.0'
-    resolution:
-      integrity: sha512-hKGCoeNdFL2W7S76J/Oucbw0/qRlfG815tENdhzcqTpSjKgAN91mFOqU2lQUflRRxFM7iZvCyaFcAR9noc/CqQ==
   /nopt/5.0.0:
     dependencies:
       abbrev: 1.1.1
@@ -809,15 +797,6 @@ packages:
     dev: false
     resolution:
       integrity: sha1-32BBeABfUi8V60SQ5yR6G/qmf4w=
-  /paypal-rest-sdk/1.8.1:
-    dependencies:
-      buffer-crc32: 0.2.13
-      semver: 5.7.1
-    dev: false
-    engines:
-      node: '>= v0.6.0'
-    resolution:
-      integrity: sha512-Trj2GuPn10GqpICAxQh5wjxuDT7rq7DMOkvyatz05wI5xPGmqXN7UC0WfDSF9WSBs4YdcWZP0g+nY+sOdaFggw==
   /proto-list/1.2.4:
     dev: false
     resolution:
@@ -1180,7 +1159,5 @@ specifiers:
   http-errors: ~1.6.2
   morgan: ~1.9.0
   mysql2: ^1.6.4
-  nodemailer: ^5.1.1
-  paypal-rest-sdk: ^1.8.1
   sequelize: ^4.42.0
   sequelize-cli: ^5.4.0
