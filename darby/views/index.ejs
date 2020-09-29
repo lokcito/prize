@@ -49,7 +49,7 @@
               <label>Carrera:</label>
               <select required  name="carrierId" class="form-control">
                 <% carriers.forEach(function(carrier){ %>
-                  <option value="5"><%= carrier.name %></option>
+                  <option value="<%= carrier.id %>"><%= carrier.name %></option>
                 <% }); %>
               </select>
             </div>
