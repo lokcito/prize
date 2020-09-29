@@ -20,7 +20,7 @@ router.get('/', function(req, res, next) {
   
 });
 router.get('/404', function(req, res, next) {
-  res.render('404', {});  
+  res.render('404', {});
 });
 
 module.exports = router;

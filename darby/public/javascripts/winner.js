@@ -4,6 +4,7 @@ $(document).on("ready", function(){
     var $submit = $("#area-submit");
     var $loading = $("#area-loading");
     var $winner = $("#area-winner");
+    var $phone = $("#area-phone");
     var $error = $("#area-error");
     var $prize = $("#area-prize");
     
@@ -19,6 +20,8 @@ $(document).on("ready", function(){
         
         $loading.remove();
         $winner.text("El Ganador es: " + response["object"]["winner"]);
+        $phone.text(response["object"]["phone"]);
+        $phone.show();
         $winner.show(); 
       } else {
         $loading.remove();
