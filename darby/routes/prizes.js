@@ -2,8 +2,12 @@ var express = require("express");
 var router = express.Router();
 var models = require("../models");
 const Sequelize = require("sequelize");
-
+var token = "eyJhbGciOiJIUz111I1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab301RMHrHDcEfxjoYZg553eFONFh7HgQ";
 router.get("/current", function(req, res, next) {
+  if ( token !== req.query.token) {
+    res.redirect("/404"); 
+    return;
+  }
   let prizes = models.Prize.findAll({
     where: {
       status: "current"
@@ -52,25 +56,54 @@ router.get("/current", function(req, res, next) {
 });
 
 router.get('/create', function(req, res, next) {
-  res.render('prizes/create', {});  
+  if ( token !== req.query.token) {
+    res.redirect("/404"); 
+    return;
+  }  
+  let prizes = models.Prize.findAll({
+    where: {
+      status: "current"
+    }
+  }).then(function(prize) {
+    if (prize && prize.length > 0) {
+      let currentPrize = prize[0];
+      res.render('prizes/create', {'prize': currentPrize});  
+    } else {
+      res.render('prizes/create', {'prize': undefined});   
+    }
+  });
 });
 
-router.post("/store", function(req, res, next) {
-  let school = req.body.school;
+router.post("/store", function(req, res, next) {  
+  let school = req.body.school || "-";
   const prizeObject = models.Prize.build({
-    school: school,
+    school: school.toUpperCase(),
     status: 'current'
   })
   
   prizeObject
   .save()
   .then(anotherTask => {
-    res.redirect('/prizes/current');
+    res.redirect('/prizes/current?token=' + token);
   })
   .catch(error => {
     res.redirect('/404');
   });  
 });
+
+function randomNumber(min, max) {
+  if (min > max) {
+    let temp = max;
+    max = min;
+    min = max;
+  }
+
+  if (min <= 0) {
+    return Math.floor(Math.random() * (max + Math.abs(min) + 1)) + min;
+  } else {
+    return Math.floor(Math.random() * max) + min;
+  }
+}
 
 router.post("/set_winner", function(req, res, next) {
   let prizeId = req.body.prizeId;
@@ -94,7 +127,8 @@ router.post("/set_winner", function(req, res, next) {
                * Aqui se hace el sorteo
                *
               */
-              let currentStudent = students[0];
+              var positonRow = randomNumber(0, students.length - 1);
+              let currentStudent = students[positonRow];
 
               models.Student.update({
                 winner: true,
@@ -103,6 +137,7 @@ router.post("/set_winner", function(req, res, next) {
                   id: currentStudent.id
                 }
               });
+              
               models.Prize.update({
                 status: 'played'
               }, {
