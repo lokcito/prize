@@ -1,10 +1,6 @@
 <% layout('/layout/page') -%>
-<div class="container mt-2">
   <div class="row">
-    <div class="col-sm-2">
-       
-    </div>    
-    <div class="col-sm-8">  
+    <div class="col-12">  
       <div class="card">
         <h5 data-id="<%= prize.id %>" id="area-prize" class="card-header">Colegio: <%= prize.school %></h5>
         <ul class="list-group list-group-flush">
@@ -18,10 +14,12 @@
         </ul>
         <div class="card-body text-center">
           <div id="area-loading" style="display: none">
-            <img src="https://cdn.glitch.com/490fd36b-09db-477f-a8b4-94f18320363d%2Fajax-loader.gif?v=1601330380969" />
+            <img src="http://sorteo.equisd.com/images/ajax-loader.gif" />
           </div>
-          <h3 class="text-center" id="area-winner"  style="display: none">
+          <h3 class="text-center" id="area-winner" style="display: none">
           </h3>
+          <h6 class="text-center" id="area-phone" style="display: none; font-size: 12px;">
+          </h6>
           <div class="alert alert-danger" id="area-error"  style="display: none">
             Oops! Algo ha salido mal. Por favor refresca tu navegador e intentalo de nuevo.
           </div>
@@ -29,5 +27,4 @@
       </div>
     </div>
   </div>
-</div>
 

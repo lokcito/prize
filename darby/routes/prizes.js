@@ -117,7 +117,8 @@ router.post("/set_winner", function(req, res, next) {
               res.json({
                 status: true,
                 object: {
-                  winner: currentStudent.getFullname
+                  winner: currentStudent.getFullname,
+                  phone: currentStudent.phone,
                 }
               });
             } else {
